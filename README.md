@@ -18,3 +18,9 @@ history.get = /history
 public static String productsGet = cfgProvider.getProperty("products.get", String.class);
 ```
 So I created a small script to parse the swagger API and produce java file content and property file content
+
+I know that it's just a converter between json and property. But as I found that people sometimes prefer to write
+such a kind of files by hand.
+
+## development
+Seriously? Ok, so write code/test and push MR. 
