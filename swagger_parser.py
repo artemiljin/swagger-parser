@@ -82,6 +82,7 @@ def parse_json(json_name):
     :return: stdout
     """
     json_file = Path('resources', json_name)
+    property_list = []
     with json_file.open(encoding='utf-8') as fr:
         list_java = []
         data = json.load(fr)
@@ -105,15 +106,26 @@ def parse_json(json_name):
                 docstring = get_uri_desc(tags_desc, tags, summary)
                 list_java.append(gen_java(java_name, property_name, docstring))
                 print(f'{name}{k} = {path}')
+                property_list.append(f'{name}{k} = {path}')
         print('--- end of property file ---')
         print('--- start of java file ---')
         for item in list_java:
             print(item)
         print('--- end of java file ---')
+    return property_list, list_java
 
 
 def main():
-    parse_json('example.api.json')
+    api_name = 'example.api'
+    property_list, java_list = parse_json(f'{api_name}.json')
+    property_result = Path('result', f'{api_name}.properties')
+    java_result = Path('result', f'{api_name}.java')
+
+    with open(property_result, 'w') as fw:
+        fw.write('\n'.join([str(elem) for elem in property_list]))
+
+    with open(java_result, 'w') as fw:
+        fw.write('\n'.join([str(elem) for elem in java_list]))
 
 
 if __name__ == '__main__':
