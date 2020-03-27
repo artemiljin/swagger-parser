@@ -19,7 +19,7 @@ public static String productsGet = cfgProvider.getProperty("products.get", Strin
 ```
 So I created a small script to parse the swagger API and produce java file content and property file content
 
-I know that it's just a converter between json and property. But as I found that people sometimes prefer to write
+I know that it's just a converter between json and property. But as I found people sometimes prefer to write
 such a kind of files by hand.
 
 ## development
