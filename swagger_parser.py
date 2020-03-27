@@ -86,6 +86,7 @@ def parse_json(json_name):
         list_java = []
         data = json.load(fr)
         tags_desc = data.get('tags', [])
+        print('--- start of property file ---')
         for path in data['paths']:
             for k, v in data['paths'][path].items():
                 # check the deprecated flags, but....
@@ -104,9 +105,11 @@ def parse_json(json_name):
                 docstring = get_uri_desc(tags_desc, tags, summary)
                 list_java.append(gen_java(java_name, property_name, docstring))
                 print(f'{name}{k} = {path}')
-
+        print('--- end of property file ---')
+        print('--- start of java file ---')
         for item in list_java:
             print(item)
+        print('--- end of java file ---')
 
 
 def main():
